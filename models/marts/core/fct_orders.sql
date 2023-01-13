@@ -28,5 +28,3 @@ final as (
 )
 
 select * from final
-
-b a a c b c a 
