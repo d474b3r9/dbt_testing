@@ -1,11 +1,25 @@
-select
-    id as payment_id,
-    orderid as order_id,
-    paymentmethod as payment_method,
-    status,
+with
 
-    -- amount is stored in cents, convert it to dollars
-    amount / 100 as amount,
-    created as created_at
+source as (
 
-from `dbt-tutorial`.stripe.payment
+    select * from {{ source('jaffle_shop', 'payment')}}
+
+
+),
+
+staged as (
+
+    select
+        id as payment_id,
+        orderid as order_id,
+        paymentmethod as payment_method,
+        status,
+
+        -- amount is stored in cents, convert it to dollars
+        amount / 100 as amount,
+        created as created_at
+    from source
+    
+)
+
+select * from staged
