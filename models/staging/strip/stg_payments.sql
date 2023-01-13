@@ -8,4 +8,4 @@ select
     amount / 100 as amount,
     created as created_at
 
-from `dbt-tutorial`.raw.stripe.payment 
+from `dbt-tutorial`.stripe.payment
